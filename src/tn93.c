@@ -3,50 +3,13 @@
 
 #include "tn93.h"
 
-unsigned long map_char(const char c){
-  switch(c){
-    case 'A':
-      return(0UL);
-    case 'C':
-      return(1UL);
-    case 'G':
-      return(2UL);
-    case 'T':
-      return(3UL);
-    case 'U':
-      return(4UL);
-    case 'R':
-      return(5UL);
-    case 'Y':
-      return(6UL);
-    case 'S':
-      return(7UL);
-    case 'W':
-      return(8UL);
-    case 'K':
-      return(9UL);
-    case 'M':
-      return(10UL);
-    case 'B':
-      return(11UL);
-    case 'D':
-      return(12UL);
-    case 'H':
-      return(13UL);
-    case 'V':
-      return(14UL);
-    case 'N':
-      return(15UL);
-    case '?':
-      return(16UL);
-    case '-':
-      return(17UL);
-    default:
-      return(16UL);
-  }
-}
+double computeTN93 (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap) {
 
-double		computeTN93 (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap) {
+  const unsigned char alphabet[] = "ACGTURYSWKMBDHVN?-";
+  unsigned long map_char[256];
+  for(int i=0;i<=17;i++){
+    map_char[alphabet[i]] = i;
+  }
 
   const long   resolutions [][4] = { {1,0,0,0},
     {0,1,0,0},
@@ -114,7 +77,7 @@ double		computeTN93 (const char * s1, const char * s2,  const unsigned long L, c
       pairwiseCounts[i][j] = 0.;
 
     for (unsigned long p = 0; p < L; p++) {
-      unsigned long c1 = map_char(s1[p]), c2 = map_char(s2[p]);
+      unsigned long c1 = map_char[(unsigned char)s1[p]], c2 = map_char[(unsigned char)s2[p]];
 
       if (c1 < 4UL && c2 < 4UL) {
         pairwiseCounts [c1][c2] += 1.;
