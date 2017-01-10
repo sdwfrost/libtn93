@@ -19,8 +19,6 @@
 #define  RESOLVE_G 0x04
 #define  RESOLVE_T 0x08
 
-double		computeTN93 (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap);
-
-
+extern double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap);
 
 #endif

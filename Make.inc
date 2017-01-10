@@ -6,7 +6,7 @@ ARCH = $(shell uname -m)
 USEGCC = 1
 USECLANG = 0
 
-CFLAGS-add += -Wall -O3 -ffast-math
+CFLAGS-add += -Wall -Wextra -pedantic -O3 -ffast-math
 
 ifeq ($(USECLANG),1)
 USEGCC = 0
