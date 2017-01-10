@@ -576,6 +576,13 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
     const char* function_name);
 
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
+
 /* CodeObjectCache.proto */
 typedef struct {
     PyCodeObject* code_object;
@@ -625,39 +632,45 @@ int __pyx_module_is_main__tn93 = 0;
 static const char __pyx_k_L[] = "L";
 static const char __pyx_k_s1[] = "s1";
 static const char __pyx_k_s2[] = "s2";
+static const char __pyx_k_s1b[] = "s1b";
+static const char __pyx_k_s2b[] = "s2b";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_tn93[] = "_tn93";
-static const char __pyx_k_tn93dist[] = "tn93dist";
+static const char __pyx_k_tn93[] = "tn93";
+static const char __pyx_k_ASCII[] = "ASCII";
+static const char __pyx_k_tn93_2[] = "_tn93";
 static const char __pyx_k_matchMode[] = "matchMode";
 static const char __pyx_k_min_overlap[] = "min_overlap";
 static const char __pyx_k_home_simon_Projects_libtn93_src[] = "/home/simon/Projects/libtn93/src/_tn93.pyx";
+static PyObject *__pyx_n_s_ASCII;
 static PyObject *__pyx_n_s_L;
 static PyObject *__pyx_kp_s_home_simon_Projects_libtn93_src;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_matchMode;
 static PyObject *__pyx_n_s_min_overlap;
 static PyObject *__pyx_n_s_s1;
+static PyObject *__pyx_n_s_s1b;
 static PyObject *__pyx_n_s_s2;
+static PyObject *__pyx_n_s_s2b;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_tn93;
-static PyObject *__pyx_n_s_tn93dist;
-static PyObject *__pyx_pf_5_tn93_tn93dist(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s1, PyObject *__pyx_v_s2, PyObject *__pyx_v_L, PyObject *__pyx_v_matchMode, PyObject *__pyx_v_min_overlap); /* proto */
+static PyObject *__pyx_n_s_tn93_2;
+static PyObject *__pyx_pf_5_tn93_tn93(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s1, PyObject *__pyx_v_s2, PyObject *__pyx_v_L, PyObject *__pyx_v_matchMode, PyObject *__pyx_v_min_overlap); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 
 /* "_tn93.pyx":4
- *   double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
+ *   double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
  * 
- * def tn93dist(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
- *   return(tn93(s1,s2,L,matchMode,min_overlap))
- * 
+ * def tn93(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
+ *   s1b=bytearray(s1,"ASCII")
+ *   s2b=bytearray(s2,"ASCII")
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5_tn93_1tn93dist(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_5_tn93_1tn93dist = {"tn93dist", (PyCFunction)__pyx_pw_5_tn93_1tn93dist, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5_tn93_1tn93dist(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_5_tn93_1tn93(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_5_tn93_1tn93 = {"tn93", (PyCFunction)__pyx_pw_5_tn93_1tn93, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_5_tn93_1tn93(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_s1 = 0;
   PyObject *__pyx_v_s2 = 0;
   PyObject *__pyx_v_L = 0;
@@ -665,7 +678,7 @@ static PyObject *__pyx_pw_5_tn93_1tn93dist(PyObject *__pyx_self, PyObject *__pyx
   PyObject *__pyx_v_min_overlap = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("tn93dist (wrapper)", 0);
+  __Pyx_RefNannySetupContext("tn93 (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_s1,&__pyx_n_s_s2,&__pyx_n_s_L,&__pyx_n_s_matchMode,&__pyx_n_s_min_overlap,0};
     PyObject* values[5] = {0,0,0,0,0};
@@ -689,26 +702,26 @@ static PyObject *__pyx_pw_5_tn93_1tn93dist(PyObject *__pyx_self, PyObject *__pyx
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_s2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("tn93dist", 1, 5, 5, 1); __PYX_ERR(0, 4, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("tn93", 1, 5, 5, 1); __PYX_ERR(0, 4, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_L)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("tn93dist", 1, 5, 5, 2); __PYX_ERR(0, 4, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("tn93", 1, 5, 5, 2); __PYX_ERR(0, 4, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_matchMode)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("tn93dist", 1, 5, 5, 3); __PYX_ERR(0, 4, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("tn93", 1, 5, 5, 3); __PYX_ERR(0, 4, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_min_overlap)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("tn93dist", 1, 5, 5, 4); __PYX_ERR(0, 4, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("tn93", 1, 5, 5, 4); __PYX_ERR(0, 4, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "tn93dist") < 0)) __PYX_ERR(0, 4, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "tn93") < 0)) __PYX_ERR(0, 4, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -727,62 +740,110 @@ static PyObject *__pyx_pw_5_tn93_1tn93dist(PyObject *__pyx_self, PyObject *__pyx
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("tn93dist", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 4, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("tn93", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 4, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("_tn93.tn93dist", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("_tn93.tn93", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5_tn93_tn93dist(__pyx_self, __pyx_v_s1, __pyx_v_s2, __pyx_v_L, __pyx_v_matchMode, __pyx_v_min_overlap);
+  __pyx_r = __pyx_pf_5_tn93_tn93(__pyx_self, __pyx_v_s1, __pyx_v_s2, __pyx_v_L, __pyx_v_matchMode, __pyx_v_min_overlap);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5_tn93_tn93dist(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s1, PyObject *__pyx_v_s2, PyObject *__pyx_v_L, PyObject *__pyx_v_matchMode, PyObject *__pyx_v_min_overlap) {
+static PyObject *__pyx_pf_5_tn93_tn93(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_s1, PyObject *__pyx_v_s2, PyObject *__pyx_v_L, PyObject *__pyx_v_matchMode, PyObject *__pyx_v_min_overlap) {
+  PyObject *__pyx_v_s1b = NULL;
+  PyObject *__pyx_v_s2b = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  char const *__pyx_t_1;
-  char const *__pyx_t_2;
-  unsigned long __pyx_t_3;
-  char __pyx_t_4;
-  long __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  __Pyx_RefNannySetupContext("tn93dist", 0);
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  char const *__pyx_t_3;
+  char const *__pyx_t_4;
+  unsigned long __pyx_t_5;
+  char __pyx_t_6;
+  long __pyx_t_7;
+  __Pyx_RefNannySetupContext("tn93", 0);
 
   /* "_tn93.pyx":5
  * 
- * def tn93dist(s1,s2,L,matchMode,min_overlap):
- *   return(tn93(s1,s2,L,matchMode,min_overlap))             # <<<<<<<<<<<<<<
+ * def tn93(s1,s2,L,matchMode,min_overlap):
+ *   s1b=bytearray(s1,"ASCII")             # <<<<<<<<<<<<<<
+ *   s2b=bytearray(s2,"ASCII")
+ *   return(_tn93(s1b,s2b,L,matchMode,min_overlap))
+ */
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_v_s1);
+  __Pyx_GIVEREF(__pyx_v_s1);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_s1);
+  __Pyx_INCREF(__pyx_n_s_ASCII);
+  __Pyx_GIVEREF(__pyx_n_s_ASCII);
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_ASCII);
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_s1b = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "_tn93.pyx":6
+ * def tn93(s1,s2,L,matchMode,min_overlap):
+ *   s1b=bytearray(s1,"ASCII")
+ *   s2b=bytearray(s2,"ASCII")             # <<<<<<<<<<<<<<
+ *   return(_tn93(s1b,s2b,L,matchMode,min_overlap))
+ * 
+ */
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_v_s2);
+  __Pyx_GIVEREF(__pyx_v_s2);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_s2);
+  __Pyx_INCREF(__pyx_n_s_ASCII);
+  __Pyx_GIVEREF(__pyx_n_s_ASCII);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_ASCII);
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)(&PyByteArray_Type)), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_s2b = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "_tn93.pyx":7
+ *   s1b=bytearray(s1,"ASCII")
+ *   s2b=bytearray(s2,"ASCII")
+ *   return(_tn93(s1b,s2b,L,matchMode,min_overlap))             # <<<<<<<<<<<<<<
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_AsString(__pyx_v_s1); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) __PYX_ERR(0, 5, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_AsString(__pyx_v_s2); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 5, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyInt_As_unsigned_long(__pyx_v_L); if (unlikely((__pyx_t_3 == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 5, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyInt_As_char(__pyx_v_matchMode); if (unlikely((__pyx_t_4 == (char)-1) && PyErr_Occurred())) __PYX_ERR(0, 5, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_PyInt_As_long(__pyx_v_min_overlap); if (unlikely((__pyx_t_5 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 5, __pyx_L1_error)
-  __pyx_t_6 = PyFloat_FromDouble(tn93(__pyx_t_1, __pyx_t_2, __pyx_t_3, __pyx_t_4, __pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_r = __pyx_t_6;
-  __pyx_t_6 = 0;
+  __pyx_t_3 = __Pyx_PyObject_AsString(__pyx_v_s1b); if (unlikely((!__pyx_t_3) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_v_s2b); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_unsigned_long(__pyx_v_L); if (unlikely((__pyx_t_5 == (unsigned long)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_As_char(__pyx_v_matchMode); if (unlikely((__pyx_t_6 == (char)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_v_min_overlap); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(tn93(__pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6, __pyx_t_7)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
   /* "_tn93.pyx":4
- *   double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
+ *   double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
  * 
- * def tn93dist(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
- *   return(tn93(s1,s2,L,matchMode,min_overlap))
- * 
+ * def tn93(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
+ *   s1b=bytearray(s1,"ASCII")
+ *   s2b=bytearray(s2,"ASCII")
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("_tn93.tn93dist", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("_tn93.tn93", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_s1b);
+  __Pyx_XDECREF(__pyx_v_s2b);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -811,16 +872,19 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_n_s_ASCII, __pyx_k_ASCII, sizeof(__pyx_k_ASCII), 0, 0, 1, 1},
   {&__pyx_n_s_L, __pyx_k_L, sizeof(__pyx_k_L), 0, 0, 1, 1},
   {&__pyx_kp_s_home_simon_Projects_libtn93_src, __pyx_k_home_simon_Projects_libtn93_src, sizeof(__pyx_k_home_simon_Projects_libtn93_src), 0, 0, 1, 0},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_matchMode, __pyx_k_matchMode, sizeof(__pyx_k_matchMode), 0, 0, 1, 1},
   {&__pyx_n_s_min_overlap, __pyx_k_min_overlap, sizeof(__pyx_k_min_overlap), 0, 0, 1, 1},
   {&__pyx_n_s_s1, __pyx_k_s1, sizeof(__pyx_k_s1), 0, 0, 1, 1},
+  {&__pyx_n_s_s1b, __pyx_k_s1b, sizeof(__pyx_k_s1b), 0, 0, 1, 1},
   {&__pyx_n_s_s2, __pyx_k_s2, sizeof(__pyx_k_s2), 0, 0, 1, 1},
+  {&__pyx_n_s_s2b, __pyx_k_s2b, sizeof(__pyx_k_s2b), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_tn93, __pyx_k_tn93, sizeof(__pyx_k_tn93), 0, 0, 1, 1},
-  {&__pyx_n_s_tn93dist, __pyx_k_tn93dist, sizeof(__pyx_k_tn93dist), 0, 0, 1, 1},
+  {&__pyx_n_s_tn93_2, __pyx_k_tn93_2, sizeof(__pyx_k_tn93_2), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
@@ -832,16 +896,16 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "_tn93.pyx":4
- *   double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
+ *   double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
  * 
- * def tn93dist(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
- *   return(tn93(s1,s2,L,matchMode,min_overlap))
- * 
+ * def tn93(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
+ *   s1b=bytearray(s1,"ASCII")
+ *   s2b=bytearray(s2,"ASCII")
  */
-  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_s1, __pyx_n_s_s2, __pyx_n_s_L, __pyx_n_s_matchMode, __pyx_n_s_min_overlap); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(7, __pyx_n_s_s1, __pyx_n_s_s2, __pyx_n_s_L, __pyx_n_s_matchMode, __pyx_n_s_min_overlap, __pyx_n_s_s1b, __pyx_n_s_s2b); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_simon_Projects_libtn93_src, __pyx_n_s_tn93dist, 4, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 7, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_simon_Projects_libtn93_src, __pyx_n_s_tn93, 4, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -949,20 +1013,20 @@ PyMODINIT_FUNC PyInit__tn93(void)
   #endif
 
   /* "_tn93.pyx":4
- *   double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
+ *   double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
  * 
- * def tn93dist(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
- *   return(tn93(s1,s2,L,matchMode,min_overlap))
- * 
+ * def tn93(s1,s2,L,matchMode,min_overlap):             # <<<<<<<<<<<<<<
+ *   s1b=bytearray(s1,"ASCII")
+ *   s2b=bytearray(s2,"ASCII")
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5_tn93_1tn93dist, NULL, __pyx_n_s_tn93); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5_tn93_1tn93, NULL, __pyx_n_s_tn93_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_tn93dist, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_tn93, __pyx_t_1) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "_tn93.pyx":1
  * cdef extern from "tn93.h":             # <<<<<<<<<<<<<<
- *   double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
+ *   double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
  * 
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -1151,6 +1215,26 @@ invalid_keyword:
 bad:
     return -1;
 }
+
+/* PyObjectCall */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
 
 /* CodeObjectCache */
 static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {
