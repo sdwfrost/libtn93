@@ -6,8 +6,8 @@
 double computeTN93 (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap) {
 
   const unsigned char alphabet[] = "ACGTURYSWKMBDHVN?-";
-  unsigned long map_char[256];
-  for(int i=0;i<=17;i++){
+  unsigned long map_char[256] = {16UL};
+  for(unsigned long i=0;i<=17UL;i++){
     map_char[alphabet[i]] = i;
   }
 
