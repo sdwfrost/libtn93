@@ -17,7 +17,7 @@ It is reasonably fast and most importantly, deals with ambiguous nucleotides sys
 ### API
 
 ```C
-double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long minOverlap);
+double tn93(const char * s1, const char * s2,  const unsigned long L, const unsigned int matchMode, const long minOverlap);
 ```
 
 where:
