@@ -303,7 +303,7 @@ const  double resolutionsCount[] = { 1.f,
   0.f
 };
 
-double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long minOverlap) {
+double tn93(const char * s1, const char * s2,  const unsigned long L, const unsigned int matchMode, const unsigned long minOverlap) {
 
   char useK2P   = 0;
   unsigned long ambig_count = 0UL;

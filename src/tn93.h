@@ -18,6 +18,6 @@
 #define  RESOLVE_G 0x04
 #define  RESOLVE_T 0x08
 
-extern double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long minOverlap);
+extern double tn93(const char * s1, const char * s2,  const unsigned long L, const unsigned int matchMode, const unsigned long minOverlap);
 
 #endif

@@ -40,3 +40,6 @@ python/*.pyc
 python/build
 python/*.c
 
+# R
+Rcpp/.Rhistory
+

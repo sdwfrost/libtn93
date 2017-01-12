@@ -6,7 +6,7 @@ SKIP = 2
 GAPMM = 3
 
 cdef extern from "../src/tn93.h":
-  double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap)
+  double _tn93 "tn93" (const char * s1, const char * s2,  const unsigned long L, const unsigned int matchMode, const unsigned long min_overlap)
 
 def tn93(s1,s2,L,matchMode,min_overlap):
   s1b=bytearray(s1,"ASCII")
