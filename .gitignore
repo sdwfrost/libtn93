@@ -43,3 +43,6 @@ python/*.c
 # R
 Rcpp/.Rhistory
 
+# Nim
+nim/nimcache
+
