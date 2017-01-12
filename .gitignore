@@ -31,3 +31,12 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Compiled test
+test/test
+
+# Python
+python/*.pyc
+python/build
+python/*.c
+

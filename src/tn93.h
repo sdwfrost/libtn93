@@ -7,7 +7,6 @@
 #define  AVERAGE        1
 #define  SKIP           2
 #define  GAPMM          3
-#define  SUBSET         4
 
 #define N_CHAR 15UL
 #define GAP    17UL
@@ -19,6 +18,6 @@
 #define  RESOLVE_G 0x04
 #define  RESOLVE_T 0x08
 
-extern double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap);
+extern double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long minOverlap);
 
 #endif

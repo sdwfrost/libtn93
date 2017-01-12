@@ -303,7 +303,7 @@ const  double resolutionsCount[] = { 1.f,
   0.f
 };
 
-double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long min_overlap) {
+double tn93(const char * s1, const char * s2,  const unsigned long L, const char matchMode, const long minOverlap) {
 
   char useK2P   = 0;
   unsigned long ambig_count = 0UL;
@@ -355,7 +355,7 @@ double tn93(const char * s1, const char * s2,  const unsigned long L, const char
                 if (c1 < 4UL) { // c1 resolved and c2 is not
                   if (matchMode != SKIP) {
                     if (resolutionsCount[c2] > 0.) {
-                      if (matchMode == RESOLVE || matchMode == SUBSET)
+                      if (matchMode == RESOLVE)
                         if (resolutions[c2][c1]) {
                           ambig_count ++;
                           pairwiseCounts[c1][c1] += 1.;
@@ -377,7 +377,7 @@ double tn93(const char * s1, const char * s2,  const unsigned long L, const char
                   if (matchMode != SKIP) {
                     if (c2 < 4UL) { // c2 resolved an c1 is not
                       if (resolutionsCount[c1] > 0.) {
-                        if (matchMode == RESOLVE || matchMode == SUBSET) {
+                        if (matchMode == RESOLVE) {
                           if (resolutions[c1][c2]) {
                             ambig_count ++;
                             pairwiseCounts[c2][c2] += 1.;
@@ -399,7 +399,7 @@ double tn93(const char * s1, const char * s2,  const unsigned long L, const char
                       double norm = resolutionsCount[c1] * resolutionsCount[c2];
                       //cout << int(c1) << ":" << int(c2) << "/" << norm << endl;
                       if (norm > 0.0) {
-                        if (matchMode == RESOLVE || matchMode == SUBSET) {
+                        if (matchMode == RESOLVE) {
                           ambig_count ++;
                           long matched_count = 0L,
                           positive_match [4] = {0,0,0,0};
@@ -450,8 +450,7 @@ double tn93(const char * s1, const char * s2,  const unsigned long L, const char
     }
   }
 
-  if (totalNonGap <= min_overlap) {
-    printf("totalNonGap = %f\n",totalNonGap);
+  if (totalNonGap <= minOverlap) {
     return -1.;
   }
 
