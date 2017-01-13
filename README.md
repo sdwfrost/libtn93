@@ -122,21 +122,11 @@ This gives:
 [1] "Distance (ambig mode 3) = 0.0451559970281397"
 ```
 
-A comparison with `dist.dna` in the `ape` package is provided in `Rcpp/test2.R`, demonstrating that TN93 is about ten times faster; this displays the time to perform 100,000 distance calculations on sequences, 1320 base pairs long, on my Dell XPS13 laptop.
-
-```r
-source('test2.R')
-[1] "TN93"
-   user  system elapsed
-  0.868   0.004   0.872
-[1] "ape dna.dist"
-   user  system elapsed
-  9.780   0.000   9.782
-```
+In practice, `sourceCpp` involves a lot of overhead, so in the test files, a trick from [here](http://stackoverflow.com/questions/26051371/rcpp-how-to-keep-files-generated-by-sourcecpp) is used.
 
 ## Nim interface
 
-A Nim module, `tn93.nim` is included, which wraps the C library. Usage is as follows.
+A [Nim](http://nim-lang.org) module, `tn93.nim` is included, which wraps the C library. Usage is as follows.
 
 ```nim
 import tn93
@@ -153,6 +143,22 @@ The test file, `test.nim`, can be compiled as follows.
 ```bash
 nim c -d:release test
 ```
+
+There is also a static version, that includes `tn93.c`:
+
+```bash
+nim c --cincludes="../src" -d:release test_static
+```
+
+## Benchmarks
+
+Even though all the versions are using the same underlying C code, there are differences in the performance due to the way that C functions are called. Some quick benchmarks (100,000 distance calculations between two HIV-1 sequences, 1320 base pairs long) are given below (from my Mac Pro).
+
+- C (test/test2.c)
+- Python (python/test2.py)
+- Rcpp (R/test2.R)
+- R/ape (R/test2_ape.R)
+- Nim (nim/test2.nim)
 
 ## To do
 
