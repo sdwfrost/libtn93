@@ -152,11 +152,11 @@ nim c --cincludes="../src" -d:release test_static
 
 ## Benchmarks
 
-Even though all the versions are using the same underlying C code, there are differences in the performance due to the way that C functions are called. Some quick benchmarks (100,000 distance calculations between two HIV-1 sequences, 1320 base pairs long) are given below (from my Mac Pro).
+Even though all the versions are using the same underlying C code, there are differences in the performance due to the way that C functions are called. Some quick, rough benchmarks (1,000,000 distance calculations between two HIV-1 sequences, 1320 base pairs long) are given below (from my Mac Pro).
 
-- C (test/test2.c)
-- Python (python/test2.py)
-- Rcpp (R/test2.R)
+- C (test/test2.c): 2.8s
+- Python (python/test2.py): 4.8s
+- Rcpp (R/test2.R): 
 - R/ape (R/test2_ape.R)
 - Nim (nim/test2.nim)
 

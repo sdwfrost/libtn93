@@ -1,3 +1,6 @@
+# Mac
+.DS_Store
+
 # Object files
 *.o
 *.ko
@@ -45,4 +48,7 @@ Rcpp/.Rhistory
 
 # Nim
 nim/nimcache
+
+# Others
+emscripten/*.mem
 
