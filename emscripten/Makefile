@@ -1,6 +1,6 @@
 CC = emcc
 CFLAGS = -O3
-JSFLAGS =
+JSFLAGS = --memory-init-file 0
 
 SRCS =  ../src/tn93.c
 
