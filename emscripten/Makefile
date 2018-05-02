@@ -1,11 +1,11 @@
 CC = emcc
 CFLAGS = -O3
-JSFLAGS = --pre-js prefix.js --post-js postfix.js
+JSFLAGS =
 
 SRCS =  ../src/tn93.c
 
 libtn93.js: ${SRCS}
-	$(CC) $(CFLAGS) -s "EXPORTED_FUNCTIONS=['_tn93']" -DNDEBUG -o $@ $<
+	$(CC) $(CFLAGS) $(JSFLAGS) -s ASSERTIONS=1 -s "EXPORTED_FUNCTIONS=['_tn93']" -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']" -DNDEBUG -o $@ $<
 
 clean:
-	rm -f libtn93.js
+	rm -f libtn93.js libtn93.js.mem
